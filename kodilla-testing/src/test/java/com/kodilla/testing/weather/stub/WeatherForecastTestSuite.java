@@ -1,6 +1,7 @@
 package com.kodilla.testing.weather.stub;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -20,6 +21,15 @@ class WeatherForecastTestSuite {
     @Mock
     private Temperatures temperatures;
 
+    HashMap<String, Double> temperaturesPerSite;
+    WeatherForecast weatherForecast;
+
+    @BeforeEach
+    void before(){
+        temperaturesPerSite = new HashMap<>();
+        weatherForecast = new WeatherForecast(temperatures);
+    }
+
     @Test
     void testCalculateForecastWithStub() {
         //Given
@@ -30,7 +40,6 @@ class WeatherForecastTestSuite {
         temperaturesMap.put("Warszawa", 25.2);
         temperaturesMap.put("Gdansk", 26.1);
         when(temperatures.getTemperatures()).thenReturn(temperaturesMap);
-        WeatherForecast weatherForecast = new WeatherForecast(temperatures);
 
         //When
         int quantityOfSensors = weatherForecast.calculateForecast().size();
@@ -42,13 +51,11 @@ class WeatherForecastTestSuite {
     @Test
     void testCalculateAveragePerSite(){
         //given
-        HashMap<String, Double> temperaturesPerSite = new HashMap<>();
         temperaturesPerSite.put("Stacja1",1.0);
         temperaturesPerSite.put("Stacja1", 2.0);
         temperaturesPerSite.put("Stacja1", 3.0);
         temperaturesPerSite.put("Stacja2",2.0);
         when(temperatures.getTemperatures()).thenReturn(temperaturesPerSite);
-        WeatherForecast weatherForecast = new WeatherForecast(temperatures);
         double expectedResults = 2.5;
         //when
         double averagesPerSiteResult = weatherForecast.getAverageTemp();
@@ -59,12 +66,10 @@ class WeatherForecastTestSuite {
     @Test
     void testCalculateMedianPerSite(){
         //given
-        HashMap<String, Double> temperaturesPerSite = new HashMap<>();
         temperaturesPerSite.put("Stacja1",1.0);
         temperaturesPerSite.put("Stacja2", 2.0);
         temperaturesPerSite.put("Stacja3", 4.0);
         when(temperatures.getTemperatures()).thenReturn(temperaturesPerSite);
-        WeatherForecast weatherForecast = new WeatherForecast(temperatures);
         double expectedResults = 2.0;
         //when
         double medianPerSiteResult = weatherForecast.getMedianTemp();
