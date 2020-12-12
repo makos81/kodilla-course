@@ -1,38 +1,36 @@
 package com.kodilla.testing.shape;
 
-import org.junit.jupiter.api.DisplayName;
-
 import java.util.*;
 
 public class ShapeCollector {
-    private List<Shape> arrayList;
+    private List<Shape> shapeList;
 
     public ShapeCollector(){
-        arrayList = new ArrayList<Shape>();
+        shapeList = new ArrayList<Shape>();
     }
 
     public void addFigure(Shape shape){
-        arrayList.add(shape);
+        shapeList.add(shape);
     }
 
     public void removeFigure(Shape shape){
-        arrayList.remove(shape);
+        shapeList.remove(shape);
     }
 
     public Shape getFigure(int n){
-        return arrayList.get(n);
+        return shapeList.get(n);
     }
 
     public String showFigures(){
         StringBuilder stringBuilder = new StringBuilder();
-        for(Shape e: arrayList){
+        for(Shape e: shapeList){
             stringBuilder.append(e.getShapeName());
         }
         return stringBuilder.toString();
     }
 
     public List<Shape> getShapeArray(){
-        return arrayList;
+        return shapeList;
     }
 }
 /*
