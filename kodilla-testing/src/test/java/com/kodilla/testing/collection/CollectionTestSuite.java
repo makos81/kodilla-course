@@ -43,6 +43,6 @@ public class CollectionTestSuite {
         //when
         List<Integer> testedList = oddNumbersExterminator.exterminate(Arrays.asList(1, 2, 3, 4));
         //then
-        Assertions.assertTrue(expectedList.equals(testedList.toArray()));
+        Assertions.assertTrue(expectedList.equals(testedList));
     }
 }
