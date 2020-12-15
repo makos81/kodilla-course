@@ -29,11 +29,17 @@ public class StatisticsTestSuite {
     @Test
     public void testPostsZero(){
         //given
+        List<String> list = createList(10);
+        when(statistics.usersNames()).thenReturn(list);
         when(statistics.postsCount()).thenReturn(0);
         when(statistics.commentsCount()).thenReturn(10);
         //when
         calculateStatistics.calculateAdvStatistics(statistics);
         //then
+        Assertions.assertEquals(10, calculateStatistics.getNumberOfUsers());
+        Assertions.assertEquals(0, calculateStatistics.getNumberOfPosts());
+        Assertions.assertEquals(10, calculateStatistics.getNumberOfComments());
+        Assertions.assertEquals(0, calculateStatistics.getGetAverageCommentsPerPost());
         Assertions.assertEquals(0, calculateStatistics.getAveragePostsPerUser());
         Assertions.assertEquals(0, calculateStatistics.getGetAverageCommentsPerPost());
     }
@@ -56,6 +62,10 @@ public class StatisticsTestSuite {
         //when
         calculateStatistics.calculateAdvStatistics(statistics);
         //then
+        Assertions.assertEquals(10, calculateStatistics.getNumberOfUsers());
+        Assertions.assertEquals(1000, calculateStatistics.getNumberOfPosts());
+        Assertions.assertEquals(10, calculateStatistics.getNumberOfComments());
+        Assertions.assertEquals(0.01, calculateStatistics.getGetAverageCommentsPerPost());
         Assertions.assertEquals(100, calculateStatistics.getAveragePostsPerUser());
         Assertions.assertEquals(0.01, calculateStatistics.getGetAverageCommentsPerPost());
     }
@@ -70,6 +80,10 @@ public class StatisticsTestSuite {
         //when
         calculateStatistics.calculateAdvStatistics(statistics);
         //then
+        Assertions.assertEquals(10, calculateStatistics.getNumberOfUsers());
+        Assertions.assertEquals(10, calculateStatistics.getNumberOfPosts());
+        Assertions.assertEquals(0, calculateStatistics.getNumberOfComments());
+        Assertions.assertEquals(0, calculateStatistics.getGetAverageCommentsPerPost());
         Assertions.assertEquals(0, calculateStatistics.getAverageCommentsPerUser());
         Assertions.assertEquals(0, calculateStatistics.getGetAverageCommentsPerPost());
     }
@@ -87,6 +101,9 @@ public class StatisticsTestSuite {
         Assertions.assertEquals(1, calculateStatistics.getAverageCommentsPerUser());
         Assertions.assertEquals(0.5, calculateStatistics.getGetAverageCommentsPerPost());
         Assertions.assertEquals(2, calculateStatistics.getAveragePostsPerUser());
+        Assertions.assertEquals(1, calculateStatistics.getAverageCommentsPerUser());
+        Assertions.assertEquals(0.5, calculateStatistics.getGetAverageCommentsPerPost());
+        Assertions.assertEquals(2, calculateStatistics.getAveragePostsPerUser());
     }
 
     @Test
@@ -99,6 +116,9 @@ public class StatisticsTestSuite {
         //when
         calculateStatistics.calculateAdvStatistics(statistics);
         //then
+        Assertions.assertEquals(10, calculateStatistics.getNumberOfUsers());
+        Assertions.assertEquals(20, calculateStatistics.getNumberOfPosts());
+        Assertions.assertEquals(40, calculateStatistics.getNumberOfComments());
         Assertions.assertEquals(4, calculateStatistics.getAverageCommentsPerUser());
         Assertions.assertEquals(2, calculateStatistics.getGetAverageCommentsPerPost());
         Assertions.assertEquals(2, calculateStatistics.getAveragePostsPerUser());
@@ -114,6 +134,9 @@ public class StatisticsTestSuite {
         //when
         calculateStatistics.calculateAdvStatistics(statistics);
         //then
+        Assertions.assertEquals(0, calculateStatistics.getNumberOfUsers());
+        Assertions.assertEquals(20, calculateStatistics.getNumberOfPosts());
+        Assertions.assertEquals(40, calculateStatistics.getNumberOfComments());
         Assertions.assertEquals(0, calculateStatistics.getAverageCommentsPerUser());
         Assertions.assertEquals(2, calculateStatistics.getGetAverageCommentsPerPost());
         Assertions.assertEquals(0, calculateStatistics.getAveragePostsPerUser());
@@ -129,6 +152,9 @@ public class StatisticsTestSuite {
         //when
         calculateStatistics.calculateAdvStatistics(statistics);
         //then
+        Assertions.assertEquals(100, calculateStatistics.getNumberOfUsers());
+        Assertions.assertEquals(20, calculateStatistics.getNumberOfPosts());
+        Assertions.assertEquals(40, calculateStatistics.getNumberOfComments());
         Assertions.assertEquals(0.4, calculateStatistics.getAverageCommentsPerUser());
         Assertions.assertEquals(2, calculateStatistics.getGetAverageCommentsPerPost());
         Assertions.assertEquals(0.2, calculateStatistics.getAveragePostsPerUser());
