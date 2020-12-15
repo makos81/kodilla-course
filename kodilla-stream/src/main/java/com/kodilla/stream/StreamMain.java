@@ -4,6 +4,7 @@ import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.lambda.ExecuteSaySomething;
 import com.kodilla.stream.lambda.Processor;
 import com.kodilla.stream.lambda.SaySomething;
+import com.kodilla.stream.lambda.ToUpperTransformer;
 
 public class StreamMain {
     public static void main(String[] args) {
@@ -12,5 +13,6 @@ public class StreamMain {
         poemBeautifier.beautify("a teraz dodamy literki przed tekstem", x->"ABC".concat(x));
         poemBeautifier.beautify("a teraz dodamy literki przed tekstem i za tekstem", x->"ABC" + x + "ABC");
         poemBeautifier.beautify("a teraz potworzymy napis 2 razy ", x->x.repeat(2));
+        poemBeautifier.beautify(" podniesiemy na uppercase uzywajac referencji ", ToUpperTransformer::toUpperTransform);
     }
 }
