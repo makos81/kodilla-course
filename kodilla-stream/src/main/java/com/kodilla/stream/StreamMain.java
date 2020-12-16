@@ -1,18 +1,30 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.lambda.ExecuteSaySomething;
-import com.kodilla.stream.lambda.Processor;
-import com.kodilla.stream.lambda.SaySomething;
-import com.kodilla.stream.lambda.ToUpperTransformer;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
+
+import java.time.LocalDate;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
     public static void main(String[] args) {
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
-        poemBeautifier.beautify("to tekst do upiekszenia", x->x.toUpperCase());
-        poemBeautifier.beautify("a teraz dodamy literki przed tekstem", x->"ABC".concat(x));
-        poemBeautifier.beautify("a teraz dodamy literki przed tekstem i za tekstem", x->"ABC" + x + "ABC");
-        poemBeautifier.beautify("a teraz potworzymy napis 2 razy ", x->x.repeat(2));
-        poemBeautifier.beautify(" podniesiemy na uppercase uzywajac referencji ", ToUpperTransformer::toUpperTransform);
+        Forum forum = new Forum();
+        Map<Integer, ForumUser> mapUser = forum.getUserList()
+                .stream().filter(x-> x.getSex()=='M')
+                .filter(x->(LocalDate.now().getYear() - x.getBirthDate().getYear() >=20))
+                .filter(x->x.getPostsNumber()>=1)
+                .collect(Collectors.toMap(x -> x.getId(),x->x));
+
+        mapUser.entrySet().stream()//.map(x->"Key: " + x.getKey() + " value: " + x.getValue())
+                .forEach(x->System.out.println("Key : " + x.getKey() + " value: " + x.getValue()));
     }
 }
+/*
+zainicjuje strumień Stream przy pomocy metody stream() kolekcji
+odfiltruje tylko tych użytkowników, którzy są mężczyznami,
+odfiltruje tylko tych użytkowników, którzy mają co najmniej 20 lat,
+odfiltruje tylko tych użytkowników, którzy mają co najmniej jeden opublikowany post,
+przy pomocy kolektora utworzy mapę par, w której rolę klucza będzie pełnił unikalny identyfikator użytkownika,
+wyświetli otrzymaną mapę wynikową.
+ */
