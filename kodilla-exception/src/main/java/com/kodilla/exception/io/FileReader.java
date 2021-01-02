@@ -8,17 +8,15 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class FileReader {
-    public void readFile() {
+    public void readFile(final String fileName) throws FileReaderException {
         ClassLoader classLoader = getClass().getClassLoader();
-        File newFile = new File(classLoader.getResource("names.txt").getFile());
-        Path path = Paths.get("aa");//newFile.getPath());
-        try(Stream<String> stream = Files.lines(path)){
-            stream.forEach(System.out::println);
-        }catch(IOException e){
-            System.out.println("Bład odczytu pliku " + e);
-        }finally {
-            System.out.println("Always");
+
+        try (Stream<String> fileLines = Files.lines(Path.of(classLoader.getResource(fileName).toURI()))) {
+            fileLines.forEach(System.out::println);
+        } catch (Exception e) {
+            throw new FileReaderException();
+        } finally {
+            System.out.println("I am gonna be here... always!");
         }
-        System.out.print(newFile.getPath());
     }
 }
