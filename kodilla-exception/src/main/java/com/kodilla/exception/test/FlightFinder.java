@@ -21,14 +21,12 @@ public class FlightFinder {
     }
 
     public boolean findFlight(Flight flight) throws RouteNotFoundException{
-        boolean departureAirport = false;
         boolean arrivalAirport = false;
         try{
             arrivalAirport = flightMap.get(flight.getArrivalAirport());
-            departureAirport = flightMap.get(flight.getDepartureAirport());
         }catch(Exception message){
             throw new RouteNotFoundException("Airport not found ");
         }
-        return departureAirport&&arrivalAirport;
+        return arrivalAirport;
     }
 }
