@@ -22,9 +22,9 @@ public class FlightFinder {
 
     public boolean findFlight(Flight flight) throws RouteNotFoundException{
         boolean arrivalAirport = false;
-        try{
+        if(flightMap.containsKey(flight.getArrivalAirport())){
             arrivalAirport = flightMap.get(flight.getArrivalAirport());
-        }catch(Exception message){
+        }else{
             throw new RouteNotFoundException("Airport not found ");
         }
         return arrivalAirport;
