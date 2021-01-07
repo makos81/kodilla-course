@@ -1,10 +1,10 @@
 package com.kodilla.good.patterns.challenges;
 
 public class OrderRequest{
-    User seller;
-    User buyer;
-    Product product;
-    int quantity;
+    private User seller;
+    private User buyer;
+    private Product product;
+    private int quantity;
 
     public OrderRequest(User seller, User buyer, Product product, int quantity) {
         this.seller = seller;

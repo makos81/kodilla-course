@@ -1,8 +1,8 @@
 package com.kodilla.good.patterns.challenges;
 
 public class Product {
-    String productType;
-    int UUID;
+    private String productType;
+    private int UUID;
 
     public Product(String productType, int UUID) {
         this.productType = productType;
