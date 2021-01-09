@@ -15,26 +15,32 @@ public class FlightFinder {
         flightList.add(flight);
     }
 
-    public String getFlightsFrom(String departureAiport){
+    public List<Flight> getFlightsFrom(String departureAiport){
         return this.flightList.stream().filter(x->x.getDepartureAirport()
-                .equals(departureAiport)).map(x->x.toString()).collect(Collectors.joining(", "));
+                .equals(departureAiport)).collect(Collectors.toList());
     }
 
-    public String getFlightsTo(String arrivalAirport){
+    public List<Flight> getFlightsTo(String arrivalAirport){
         return this.flightList.stream().filter(x->x.getArrivalAirport()
-                .equals(arrivalAirport)).map(x->x.toString()).collect(Collectors.joining(", "));
+                .equals(arrivalAirport)).collect(Collectors.toList());
     }
 
-    public String getFlightsVia(String departureAirport, String viaAirport, String arrivalAirport){
-        List<Flight> flights = this.flightList.stream().filter(x->x.getDepartureAirport().equals(departureAirport))
-                .filter(x->x.getArrivalAirport().equals(viaAirport)).collect(Collectors.toList());
-        List<Flight> fligthsVia = this.flightList.stream().filter(x->x.getDepartureAirport().equals(viaAirport))
-                .filter(x->x.getArrivalAirport().equals(arrivalAirport)).collect(Collectors.toList());
-        if(fligthsVia.size()==0){
-            return "not flight found via " + viaAirport;
-        }else{
-            flights.addAll(fligthsVia);
-            return flights.stream().map(x->x.toString()).collect(Collectors.joining(", "));
+    public List<Flight> getFlightsVia(String departureAirport, String arrivalAirport){
+        List<Flight> flightsFrom = getFlightsFrom(departureAirport);
+        List<Flight> flightsTo = getFlightsTo(arrivalAirport);
+        List<Flight> flightsWithTransfer = new ArrayList<>();
+
+        for(Flight flightFrom: flightsFrom) {
+            for (Flight flightTo : flightsTo) {
+                if (flightFrom.getArrivalAirport().equals(flightTo.getDepartureAirport())) {
+                    flightsWithTransfer.addAll(List.of(flightFrom, flightTo));
+                }
+            }
         }
+        return flightsWithTransfer;
+    }
+
+    public String generateStringFormat(List<Flight> flightList){
+        return flightList.stream().map(x->x.toString()).collect(Collectors.joining(", "));
     }
 }

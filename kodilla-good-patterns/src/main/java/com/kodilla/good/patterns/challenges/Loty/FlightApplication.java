@@ -9,8 +9,11 @@ public class FlightApplication {
         flightFinder.addFlight(new Flight("Wroclaw", "Poznan"));
         flightFinder.addFlight(new Flight("Poznan", "Wroclaw"));
 
-        System.out.println(flightFinder.getFlightsFrom("Warszawa"));
-        System.out.println(flightFinder.getFlightsTo("Poznan"));
-        System.out.println(flightFinder.getFlightsVia("Warszawa","Poznan","Wroclaw"));
+        System.out.println("Searched for flight from Warszawa \n" +
+                flightFinder.generateStringFormat(flightFinder.getFlightsFrom("Warszawa")));
+        System.out.println("Searched for flight to Poznan \n" +
+                flightFinder.generateStringFormat(flightFinder.getFlightsTo("Poznan")));
+        System.out.println("Searched for flight from Warszawa to Wroclaw with transfer \n" +
+                flightFinder.generateStringFormat(flightFinder.getFlightsVia("Warszawa","Wroclaw")));
     }
 }
