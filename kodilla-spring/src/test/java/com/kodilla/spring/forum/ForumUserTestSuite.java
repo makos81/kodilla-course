@@ -14,7 +14,7 @@ public class ForumUserTestSuite {
             new AnnotationConfigApplicationContext("com.kodilla.spring.forum");
         ForumUser user = context.getBean(ForumUser.class);
 
-        Assertions.assertEquals(user.getUsername(),"John Smith");
+        Assertions.assertEquals("John Smith",user.getUsername());
 
     }
 }
