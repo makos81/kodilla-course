@@ -17,6 +17,8 @@ public class CalculatorTestSuite {
         //given
 
         //when
+        boolean test =  "aaaa-audit".contains("audit");
+        System.out.println(test);
 
         //then
         Assertions.assertAll(
