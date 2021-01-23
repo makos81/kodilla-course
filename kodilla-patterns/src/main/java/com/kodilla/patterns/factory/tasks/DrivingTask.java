@@ -4,16 +4,18 @@ public class DrivingTask implements Task{
     private String taskName;
     private String where;
     private String using;
+    private boolean taskExecuted;
 
     public DrivingTask(String taskName, String where, String using) {
         this.taskName = taskName;
         this.where = where;
         this.using = using;
+        this.taskExecuted = false;
     }
-
 
     @Override
     public String executeTask() {
+        taskExecuted = true;
         return "driving " + where;
     }
 
@@ -24,10 +26,6 @@ public class DrivingTask implements Task{
 
     @Override
     public boolean isTaskExecuted() {
-        if (where.startsWith("home")){
-            return true;
-        }else{
-            return false;
-        }
+        return taskExecuted;
     }
 }
