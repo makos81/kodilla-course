@@ -1,0 +1,24 @@
+Listę zadań z tabeli ISSUESS z dołączonymi do nich nazwami list zadań z tabeli ISSUESLISTS
+
+select iss.ID, issl.NAME, iss.summary, iss.description, iss.user_id_assignedto from
+issues iss
+LEFT JOIN ISSUESLISTS issl
+on iss. ISSUESLIST_ID = issl.ID
+
+
+Listę zadań z tabeli ISSUESS z przypisanymi do nich użytkownikami z tabeli USERS
+
+
+select iss.ID, iss.issueslist_id, iss.summary, iss.description, us.firstname, us.lastname from
+issues iss
+LEFT JOIN users us
+on iss.user_id_assignedto = us.ID
+
+Imiona i nazwiska użytkowników posiadających zadania, wraz z informacją o ilości zadań, które są do nich przypisane
+
+select us.firstname, us.lastname, count(*) as ilosc_zadan from
+issues iss
+JOIN
+users us
+on iss.user_id_assignedto = us.ID
+group by iss.user_id_assignedto
