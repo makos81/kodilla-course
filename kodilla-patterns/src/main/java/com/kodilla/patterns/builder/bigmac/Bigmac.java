@@ -77,7 +77,7 @@ public class Bigmac {
             return this;
         }
 
-        public Bigmac build() {
+        public Bigmac build(){
             List<String> rollList = Arrays.asList("with sezam", "without sezam");
             List<String> sauseList = Arrays.asList("standard", "1000 wysp", "barbecue");
 

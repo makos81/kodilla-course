@@ -1,0 +1,38 @@
+create table ISSUESLISTS(
+	ID serial primary key,
+    NAME varchar(1024)
+);
+
+create table ISSUES(
+	ID serial primary key,
+    ISSUESLIST_ID bigint unsigned not null,
+    SUMMARY varchar(1024),
+    DESCRIPTION varchar(1024),
+    USER_ID_ASSIGNEDTO bigint unsigned not null,
+    foreign key(ISSUESLIST_ID) references ISSUESLISTS(ID),
+    foreign key(USER_ID_ASSIGNEDTO) references USERS(ID)
+);
+
+insert into ISSUESLISTS(NAME) values('ToDo');
+insert into ISSUESLISTS(NAME) values('In progress');
+insert into ISSUESLISTS(NAME) values('Done');
+
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(1,"sumary todo 1", "description todo 1", 1);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(1,"sumary todo 2", "description todo 2", 2);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(1,"sumary todo 3", "description todo 3", 3);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(1,"sumary todo 4", "description todo 4", 4);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(1,"sumary todo 5", "description todo 5", 5);
+
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(2,"sumary in progress 1", "description in progress  1", 1);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(2,"sumary in progress  2", "description in progress  2", 2);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(2,"sumary in progress  3", "description in progress  3", 3);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(2,"sumary in progress  4", "description in progress  4", 4);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(2,"sumary in progress  5", "description in progress  5", 5);
+
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(3,"sumary Done 1", "description Done 1", 1);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(3,"sumary Done 2", "description Done 2", 2);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(3,"sumary Done 3", "description Done 3", 2);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(3,"sumary Done 4", "description Done 4", 4);
+insert into ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) values(3,"sumary Done 5", "description Done 5", 4);
+
+COMMIT;
