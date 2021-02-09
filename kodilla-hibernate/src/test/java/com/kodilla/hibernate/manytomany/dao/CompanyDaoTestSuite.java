@@ -73,15 +73,12 @@ class CompanyDaoTestSuite {
         Employee employee3 = new Employee("adam", "wozny");
         Employee employee4 = new Employee("mateusz", "raj");
 
-        employeeDao.save(employee1);
+        employeeDao.saveAll(List.of(employee1, employee2, employee3, employee4));
         List<Employee> result = employeeDao.findUserByName("raj");
 
         Assertions.assertEquals(2, result.size());
 
-        employeeDao.delete(employee1);
-        employeeDao.delete(employee2);
-        employeeDao.delete(employee3);
-        employeeDao.delete(employee4);
+        employeeDao.deleteAll(List.of(employee1, employee2, employee3, employee4));
 
     }
 

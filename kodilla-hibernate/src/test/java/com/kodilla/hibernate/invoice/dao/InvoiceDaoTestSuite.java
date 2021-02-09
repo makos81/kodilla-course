@@ -56,11 +56,7 @@ public class InvoiceDaoTestSuite {
         Assertions.assertEquals(item2.getInvoice().getId(), invoiceID);
 
         try{
-            productDao.deleteById(product1ID);
-            productDao.deleteById(product2ID);
             invoiceDao.deleteById(invoiceID);
-            itemDao.deleteById(itemID);
-            itemDao.deleteById(item2ID);
         }catch(Exception e){
             System.out.println("Strange but this cleaning doesnt work");
         }
