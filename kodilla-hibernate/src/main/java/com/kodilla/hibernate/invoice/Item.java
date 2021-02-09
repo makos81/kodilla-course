@@ -26,8 +26,8 @@ public class Item {
 
     }
 
-    @ManyToOne()
-    @JoinColumn(name="INVOICE_ID", unique = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="INVOICE_ID")
     public Invoice getInvoice() {
         return invoice;
     }
