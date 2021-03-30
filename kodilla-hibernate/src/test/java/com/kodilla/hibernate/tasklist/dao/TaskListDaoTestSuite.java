@@ -21,6 +21,7 @@ public class TaskListDaoTestSuite {
 
     @Test
     public void testFindByListName(){
+        taskListDao.deleteAll();
         String listName = "listName";
         String description = "Task_description";
         TaskList taskList = new TaskList(listName, description);

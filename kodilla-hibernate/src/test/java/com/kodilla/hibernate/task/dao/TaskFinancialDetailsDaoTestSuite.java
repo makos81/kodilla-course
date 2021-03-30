@@ -22,6 +22,8 @@ class TaskFinancialDetailsDaoTestSuite {
 
     @Test
     void testFindByPaid() {
+        //CleanUp
+        taskFinancialDetailsDao.deleteAll();
         //Given
         TaskFinancialDetails taskFinancialDetails =
                 new TaskFinancialDetails(new BigDecimal(115), false);
@@ -34,7 +36,6 @@ class TaskFinancialDetailsDaoTestSuite {
         //Then
         assertEquals(1, resultList.size());
 
-        //CleanUp
-        taskFinancialDetailsDao.deleteById(id);
+
     }
 }
