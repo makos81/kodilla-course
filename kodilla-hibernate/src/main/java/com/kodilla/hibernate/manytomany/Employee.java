@@ -11,7 +11,7 @@ import java.util.List;
 )
 @NamedQuery(
         name = "Employee.findUserByAnyLetters",
-        query = "FROM Employee WHERE lastname LIKE CONCAT(:ARG,'%')"
+        query = "FROM Employee WHERE lastname LIKE CONCAT('%',CONCAT(:ARG,'%'))"
 )
 @Entity
 @Table(name = "EMPLOYEES")

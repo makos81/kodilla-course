@@ -12,7 +12,7 @@ import java.util.List;
 )
 @NamedQuery(
         name = "Company.findByAnyLetters",
-        query = "FROM Company where name LIKE CONCAT(:ARG,'%')"
+        query = "FROM Company where name LIKE CONCAT('%',CONCAT(:ARG,'%'))"
 )
 @Entity
 @Table(name = "COMPANIES")
